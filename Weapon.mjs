@@ -6,6 +6,7 @@ export default class Weapon
         this.minLevel = minLevel;
         this.damage = damage;
         this.durability = durability;
+        this.id = 0;
 
     }
 

@@ -11,6 +11,10 @@ let inventory = [];
 
  displayArmorsWeapons();
 
+ SelectEquipmentBelow30();
+
+ reArrangeArmory()
+
 function characterCreation(characterArray)
 
 {
@@ -143,3 +147,57 @@ function displayArmorsWeapons()
 }
 
 }
+function SelectEquipmentBelow30()
+{
+
+    console.log("Armors Below level 30")
+    console.log("---------------")
+    
+    for (let i  = 0; i < characterArray.length; i++)
+    {
+        let characterArmor = characterArray[i].getInventory()[1];
+        let armorName = characterArmor.getName();
+        let armorLevel = characterArmor.getMinLevelArmor();
+
+        if (characterArmor.minLevel < 30)
+        {
+            console.log("Name: " + armorName);
+            console.log("Level: " + armorLevel);
+        }
+
+    }
+}
+function reArrangeArmory()
+{
+    for (let i = 0; i < characterArray.length; i++)
+    {
+        for (let j = 0; j < inventory.length; j++)
+        {
+            if (j > 4 && inventory[j].minLevel <= characterArray[i].level){
+
+                characterArray[i].inventory[1] = inventory[j];
+                console.log("Character Name: " + characterArray[i].getName());
+                console.log("---")
+                console.log("Level: " + characterArray[i].getLevel());
+                console.log("Name Of Weapon: " +  characterArray[i].inventory[1].getName());
+                console.log("Level of Weapon: " +  characterArray[i].inventory[1].getMinLevelArmor());            
+
+        }
+
+        // for (let j = 0; j < inventory.length; j++)
+        // {
+        //     console.log(characterArray[i].getName());
+
+        //     if(characterArray[i].level >= inventory[j].minLevel)
+        //     {
+        //         characterArray[i].inventory[1] = inventory[j];
+        //         console.log(characterArray[i].getLevel());
+
+        //         console.log(characterArray[i].inventory[1])
+        //     }
+        // }
+    }
+}
+}
+
+ 

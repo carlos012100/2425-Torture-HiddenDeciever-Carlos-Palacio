@@ -7,7 +7,13 @@ export default class Character{
         this.level = level;
         this.age = age;
         this.stamina = stamina;
+        
         this.inventory = inventory;
+
+        this.armoryID = {
+            WEAPON : 0,
+            ARMOR : 1
+        }
     }
 
     getStamina ()
@@ -28,6 +34,10 @@ export default class Character{
     getLevel()
     {
         return this.level;
+    }
+    setNewWeapon(newInventory)
+    {
+        return this.inventory = newInventory;
     }
 
 }
