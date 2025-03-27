@@ -138,7 +138,7 @@ function displayArmorsWeapons()
     console.log("Min Level: " + characterArray[i].getInventory()[1].getMinLevelArmor());
     console.log("Defense: " + characterArray[i].getInventory()[1].getDefenseArmor());
 
-    console.log("-----------------")
+    console.log("-----------------");
 
 }
 
