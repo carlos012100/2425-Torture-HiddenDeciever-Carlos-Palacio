@@ -10,10 +10,7 @@ export default class Character{
         
         this.inventory = inventory;
 
-        this.armoryID = {
-            WEAPON : 0,
-            ARMOR : 1
-        }
+
     }
 
     getStamina ()
@@ -35,9 +32,23 @@ export default class Character{
     {
         return this.level;
     }
-    setNewWeapon(newInventory)
+    fumble(weapon)
     {
-        return this.inventory = newInventory;
+        let newWeapon = Math.floor(Math.random()* weapon.length)
+
+        if (this.level >= newWeapon.getMinLevelWeapon())
+        {
+            let totalDamage = Math.floor((newWeapon.getDamageWeapon() + this.level)/4);
+
+            let armorDefense = this.inventory[1].getDefenseArmor() - totalDamage;
+
+            this.stamina =- 5;
+
+            this.inventory[0].defense =- 2;
+            
+        }
     }
+
+
 
 }
