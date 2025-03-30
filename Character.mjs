@@ -1,7 +1,36 @@
 
 export default class Character{
 
-    constructor(name, level, age, stamina, inventory)
+
+    //inventory identyfiers
+    static ARMOR = 0;
+    //the following only valid BEFORE reasigning weapons to characters
+    static WEAPON = 1;
+
+    // id of weapons 
+    static STORM = 0
+    static CELESTIA = 1
+    static OBSIDIAN = 2
+    static STAR = 3
+    static DOOM = 4
+
+    //id of armors
+    static SHADOW = 0
+    static PHANTOM = 1
+    static TITAN = 2
+    static SYLVAN = 3
+    static ABYSSAL = 4
+
+    //ID of CHaracters 
+
+    static RAGNAR = 0
+    static SERAPH = 1
+    static THAL = 2
+    static LYA = 3
+    static DRAVE = 4 
+
+
+    constructor(name, level, age, stamina, inventory = [])
     {
         this.name = name;
         this.level = level;
@@ -10,44 +39,29 @@ export default class Character{
         
         this.inventory = inventory;
 
+        this.totalDamage = 0;
+
+
+
 
     }
-
-    getStamina ()
+    fumble(inventory)
     {
-        return this.stamina;
-    }
-    getInventory()
-    {
-        return this.inventory;
-    }
-    getName(){
-        return this.name;
-    }
-    getAge()
-    {
-        return this.age;
-    }
-    getLevel()
-    {
-        return this.level;
-    }
-    fumble(weapon)
-    {
-        let newWeapon = Math.floor(Math.random()* weapon.length)
+        
+        let weaponSelected = Math.floor(Math.random() * (this.inventory.length - 1)) + 1;
 
-        if (this.level >= newWeapon.getMinLevelWeapon())
-        {
-            let totalDamage = Math.floor((newWeapon.getDamageWeapon() + this.level)/4);
+        this.totalDamage = Math.ceil((this.inventory[weaponSelected].damage + this.level)/4);
 
-            let armorDefense = this.inventory[1].getDefenseArmor() - totalDamage;
+        this.inventory[Character.ARMOR].defense -= this.totalDamage;
 
-            this.stamina =- 5;
+        this.stamina -= 5;
 
-            this.inventory[0].defense =- 2;
-            
-        }
+        this.inventory[weaponSelected].durability -= 2
+
+        return weaponSelected;
+
     }
+
 
 
 

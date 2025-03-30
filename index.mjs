@@ -1,53 +1,50 @@
 import Armor from "./Armor.mjs"
 import Weapon from "./Weapon.mjs"
 import Character from "./Character.mjs"
-import { INVENTORY } from "./Constants.mjs"
 
 
-let characterArray = [];
-let inventory = [];
+const characterArray = [];
+const weapons = [];
+const armors = [];
 
- characterCreation(characterArray)
+armorCreation(armors);
+weaponsCreation(weapons);
+characterCreation (characterArray)
+
+
+
+function characterCreation(characterArray) {
+
+    const ragnar = new Character("Ragnar Wolfbane", 32, 45, 87, [armors[Character.SHADOW], weapons[Character.STORM]]);
+
+    const seraphina = new Character("Seraphina Nightshade", 27, 120, 92, [armors[Character.PHANTOM], weapons[Character.CELESTIA]]);
+
+    const thalgrim = new Character("Thalgrim Ironfist", 40, 52, 95, [armors[Character.TITAN], weapons[Character.CELESTIA]]);
+
+    const lyara = new Character("Lyara Moonwhisper", 35, 29, 88, [armors[Character.SYLVAN], weapons[Character.STAR]]);
+
+    const draven = new Character("Draven Blackthorn", 30, 37, 90, [armors[Character.ABYSSAL], weapons[Character.DOOM]]);
+
+    characterArray.push(ragnar, seraphina, thalgrim, lyara, draven);
+}
+
+
+//  characterCreation(characterArray)
 
  displayArmorsWeapons();
-
  SelectEquipmentBelow30();
+ reArrangeArmory();
+ printNewValues();
+ fumbleToCharacter();
 
- reArrangeArmory()
 
-function characterCreation(characterArray)
 
-{
-    let armory= [];
+//  SelectEquipmentBelow30();
 
-    inventoryCreation(inventory);
+//  reArrangeArmory()
 
-    console.log(inventory)
 
-     armory= [inventory[INVENTORY.STORM], inventory[INVENTORY.SHADOW]]
-
-    const ragnar = new Character("Ragnar Wolfbane", 32, 45, 87, armory)
-
-     armory = [inventory[INVENTORY.CELESTIA], inventory[INVENTORY.PHANTOM]]
-
-    const seraphina = new Character("Seraphina Nightshade", 27, 120, 92, armory)
-
-    armory = [inventory[INVENTORY.OBSIDIAN], inventory[INVENTORY.TITAN]];
-
-    const thalgrim = new Character("Thalgrim Ironfist", 40, 52 , 95, armory);
-
-    armory = [inventory[INVENTORY.STAR], inventory[INVENTORY.SYLVAN]];
-
-    const lyara = new Character("Lyara Moonwhisper", 35, 29, 88, armory)
-
-    armory = [inventory[INVENTORY.DOOM], inventory[INVENTORY.ABYSSAL]];
-
-    const draven = new Character("Draven Blackthorn", 30, 37, 90, armory);
-
-return characterArray.push(ragnar,seraphina,thalgrim,lyara,draven);
-
-}
-function inventoryCreation(inventory)
+function weaponsCreation(weapons)
 {
    const stormBreakerAxe = new Weapon("Stormbreaker Axe", 30, 25, 80)
 
@@ -59,6 +56,10 @@ function inventoryCreation(inventory)
 
    const doomFangDagger = new Weapon("Doomfang Dagger", 28, 20, 78)
 
+   weapons.push(stormBreakerAxe, celestialRapier, obsidianWarhammer,startfire, doomFangDagger);
+}
+function armorCreation(armors)
+{
 
     const shadowPlate = new Armor("Shadowplate", 28, 15)
 
@@ -70,37 +71,32 @@ function inventoryCreation(inventory)
 
     const abyssalCarapace = new Armor("Abyssa Carapace", 25, 10)
 
-   let ArrayyWeapons = inventory.push(stormBreakerAxe, celestialRapier, obsidianWarhammer,startfire, doomFangDagger, shadowPlate, phantomShroud, titansBulwark, sylvanGuardian, abyssalCarapace);
+    armors.push(shadowPlate, phantomShroud, titansBulwark, sylvanGuardian, abyssalCarapace);
 
-   return ArrayyWeapons;
 }
+
 function displayArmorsWeapons()
 {
 
     console.log("Weapon list")
     console.log("---------------------");
-    for (let i = 0; i < inventory.length; i++){
-        if ( i < INVENTORY.SHADOW)
-        {
+    for (let i = 0; i < weapons.length; i++){
+     
 
-        console.log(inventory[i].getName()
-        + " : " + " Min Level " + " = " + inventory[i].getMinLevelWeapon() +
-   " , "  + " Damage " + " = " + inventory[i].getDamageWeapon() + " , " + " Durability " + " = " + inventory[INVENTORY.STORM].getDurability())
+        console.log(weapons[i].name + " : " + " Min Level " + " = " + weapons[i].minLevel + " , "  + " Damage " + " = " + weapons[i].damage + " , " + " Durability " + " = " + weapons[Character.STORM].durability)
 
-        }
 
     }
     console.log("")
     console.log("Armor list")
     console.log("--------------------")
 
-    for (let i = 0; i < inventory.length; i++)
+    for (let i = 0; i < armors.length; i++)
     {
-        if (i > INVENTORY.SHADOW){
-            console.log(inventory[i].getName() + " :" + " Min Level " + "= " + inventory[i].getMinLevelArmor() + ", " + "Defense" + " = " + inventory[i].getDefenseArmor());
+    
+        console.log(armors[i].name + " :" + " Min Level " + "= " + armors[i].minLevel + ", " + "Defense" + " = " + armors[i].defense);
 
-
-        }
+        
     }
 
     console.log("");
@@ -110,39 +106,39 @@ function displayArmorsWeapons()
 
     for( let i = 0; i < characterArray.length; i++)
 
-{
-    console.log(characterArray[i].getName());
-    console.log("---------");
-    console.log("");
-    console.log("Attributes");
-    console.log("----------")
-    console.log("Level: " + characterArray[i].getLevel())
-    console.log("Age " + characterArray[i].getAge());
-    console.log("Stamina " + characterArray[i].getStamina());
+    {
+        console.log(characterArray[i].name);
+        console.log("---------");
+        console.log("");
+        console.log("Attributes");
+        console.log("----------")
+        console.log("Level: " + characterArray[i].level)
+        console.log("Age " + characterArray[i].age);
+        console.log("Stamina " + characterArray[i].stamina);
     
-    console.log("----------")
+        console.log("----------")
 
-    console.log("Weapons:")
+        console.log("Weapons:")
 
-    console.log("----------")
+        console.log("----------")
 
-    console.log("Name: " + characterArray[i].getInventory()[0].getName());
+        console.log("Name: " + characterArray[i].inventory[Character.WEAPON].name);
 
-    console.log("Min Level: " + characterArray[i].getInventory()[0].getMinLevelWeapon())
+        console.log("Min Level: " + characterArray[i].inventory[Character.WEAPON].minLevel)
 
-    console.log("Durability: " + characterArray[i].getInventory()[0].getDurability())
+        console.log("Durability: " + characterArray[i].inventory[Character.WEAPON].durability)
 
-    console.log("------------");
+        console.log("------------");
 
-    console.log("Armors:")
+        console.log("Armors:")
 
-    console.log("------------");
+        console.log("------------");
 
-    console.log("Name: " + characterArray[i].getInventory()[1].getName());
-    console.log("Min Level: " + characterArray[i].getInventory()[1].getMinLevelArmor());
-    console.log("Defense: " + characterArray[i].getInventory()[1].getDefenseArmor());
+        console.log("Name: " + characterArray[i].inventory[Character.ARMOR].name);
+        console.log("Min Level: " + characterArray[i].inventory[Character.ARMOR].minLevel);
+        console.log("Defense: " + characterArray[i].inventory[Character.ARMOR].defense);
 
-    console.log("-----------------");
+        console.log("-----------------");
 
 }
 
@@ -155,14 +151,19 @@ function SelectEquipmentBelow30()
     
     for (let i  = 0; i < characterArray.length; i++)
     {
-        let characterArmor = characterArray[i].getInventory()[1];
-        let armorName = characterArmor.getName();
-        let armorLevel = characterArmor.getMinLevelArmor();
+        let characterArmor = characterArray[i].inventory[Character.ARMOR];
+        let armorName = characterArmor.name;
+        let armorLevel = characterArmor.minLevel;
+        const minLeveltoEquip = 30;
 
-        if (characterArmor.minLevel < 30)
+        if (characterArmor.minLevel < minLeveltoEquip)
         {
             console.log("Name: " + armorName);
+
             console.log("Level: " + armorLevel);
+
+            console.log("Belongs to " + characterArray[i].name)
+            console.log("")
         }
 
     }
@@ -171,33 +172,76 @@ function reArrangeArmory()
 {
     for (let i = 0; i < characterArray.length; i++)
     {
-        for (let j = 0; j < inventory.length; j++)
+        for (let j = 0; j < weapons.length; j++)
         {
-            if (j > 4 && inventory[j].minLevel <= characterArray[i].level){
+            if (characterArray[i].level >= weapons[j].minLevel)
+            {
 
-                characterArray[i].inventory[1] = inventory[j];
-                console.log("Character Name: " + characterArray[i].getName());
-                console.log("---")
-                console.log("Level: " + characterArray[i].getLevel());
-                console.log("Name Of Weapon: " +  characterArray[i].inventory[1].getName());
-                console.log("Level of Weapon: " +  characterArray[i].inventory[1].getMinLevelArmor());            
+                characterArray[i].inventory.push(weapons[j])
+
+            }
+              
+        }
+        
+    }
+}
+function printNewValues()
+{
+    for (let i = 0; i < characterArray.length; i++)
+    {
+
+        console.log("---")
+
+      
+        console.log("Character Name: " + characterArray[i].name);
+        console.log("Level: " + characterArray[i].level);
+        console.log("")
+
+        console.log("Weapons On Inventory")
+
+        console.log("")
+
+       
+        for(let j = 1; j < characterArray[i].inventory.length; j++)
+        {
+        
+        console.log(characterArray[i].inventory[j].name);    
+        console.log("Weapons Level: " + characterArray[i].inventory[j].minLevel)
+     
 
         }
 
-        // for (let j = 0; j < inventory.length; j++)
-        // {
-        //     console.log(characterArray[i].getName());
-
-        //     if(characterArray[i].level >= inventory[j].minLevel)
-        //     {
-        //         characterArray[i].inventory[1] = inventory[j];
-        //         console.log(characterArray[i].getLevel());
-
-        //         console.log(characterArray[i].inventory[1])
-        //     }
-        // }
-    }
+        
+        }
+    
 }
+function fumbleToCharacter()
+{
+
+    console.log("")
+
+    const lyara = characterArray[Character.LYA]
+
+    let weaponPosition = lyara.fumble(lyara.inventory);
+
+    console.log("Character Name: " + lyara.name )
+
+    console.log("Age: " + lyara.age )
+
+    console.log("Level: " + lyara.level)
+
+    console.log ("Character Stamina: " + lyara.stamina)
+
+    console.log("Armor: " + lyara.inventory[Character.ARMOR].name)
+
+    console.log("Defense de la Armadura: " + lyara.inventory[Character.ARMOR].defense)
+
+    console.log("Weapon Name: " + lyara.inventory[weaponPosition].name)
+
+    console.log("Weapon Durability: " + lyara.inventory[weaponPosition].durability)
+
+    console.log("TOTAL DAMAGE: " + lyara.totalDamage)
 }
+
 
  

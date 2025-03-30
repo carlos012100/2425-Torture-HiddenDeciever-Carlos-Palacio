@@ -10,22 +10,4 @@ export default class Weapon
 
     }
 
-    getMinLevelWeapon()
-    {
-        return this.minLevel;
-
-    }
-
-    getDamageWeapon()
-    {
-        return this.damage;
-    }
-    getDurability()
-    {
-        return this.durability;
-    }
-    getName()
-    {
-        return this.name;
-    }
 }
