@@ -45,7 +45,7 @@ export default class Character{
 
 
     }
-    fumble(inventory)
+    fumble()
     {
         
         let weaponSelected = Math.floor(Math.random() * (this.inventory.length - 1)) + 1;

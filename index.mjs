@@ -222,7 +222,7 @@ function fumbleToCharacter()
 
     const lyara = characterArray[Character.LYA]
 
-    let weaponPosition = lyara.fumble(lyara.inventory);
+    let weaponPosition = lyara.fumble();
 
     console.log("Character Name: " + lyara.name )
 
